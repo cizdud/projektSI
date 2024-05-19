@@ -25,17 +25,6 @@ use Doctrine\Persistence\ManagerRegistry;
 class EventRepository extends ServiceEntityRepository
 {
     /**
-     * Items per page.
-     *
-     * Use constants to define configuration options that rarely change instead
-     * of specifying them in configuration files.
-     * See https://symfony.com/doc/current/best_practices.html#configuration
-     *
-     * @constant int
-     */
-    public const PAGINATOR_ITEMS_PER_PAGE = 3;
-
-    /**
      * Constructor.
      *
      * @param ManagerRegistry $registry Manager registry
