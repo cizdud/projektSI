@@ -1,17 +1,16 @@
 <?php
 /**
- * Event service interface.
+ * Category service interface.
  */
 
 namespace App\Service;
 
-use App\Entity\Event;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 
 /**
- * Interface EventServiceInterface.
+ * Interface CategoryServiceInterface.
  */
-interface EventServiceInterface
+interface CategoryServiceInterface
 {
     /**
      * Get paginated list.
@@ -21,5 +20,14 @@ interface EventServiceInterface
      * @return PaginationInterface<string, mixed> Paginated list
      */
     public function getPaginatedList(int $page): PaginationInterface;
+    /**
+     * Save entity.
+     *
+     * @param Category $category Category entity
+     */
+    public function save(Category $category): void;
+    public function delete(Category $category): void;
+
 
 }
+
