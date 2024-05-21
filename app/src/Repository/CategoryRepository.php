@@ -16,6 +16,19 @@ class CategoryRepository extends ServiceEntityRepository
         parent::__construct($registry, Category::class);
     }
 
+    /**
+     * Query all records.
+     *
+     * @return \Doctrine\ORM\QueryBuilder Query builder
+     */
+    public function queryAll(): QueryBuilder
+    {
+        return $this->getOrCreateQueryBuilder()
+            ->select('category', 'partial events.{id}')
+            ->join('category.events', 'events')
+            ->orderBy('category.updatedAt', 'DESC');
+    }
+
     //    /**
     //     * @return Category[] Returns an array of Category objects
     //     */

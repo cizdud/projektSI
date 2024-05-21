@@ -25,6 +25,17 @@ use Doctrine\Persistence\ManagerRegistry;
 class EventRepository extends ServiceEntityRepository
 {
     /**
+     * Items per page.
+     *
+     * Use constants to define configuration options that rarely change instead
+     * of specifying them in configuration files.
+     * See https://symfony.com/doc/current/best_practices.html#configuration
+     *
+     * @constant int
+     */
+    public const PAGINATOR_ITEMS_PER_PAGE = 3;
+
+    /**
      * Constructor.
      *
      * @param ManagerRegistry $registry Manager registry
@@ -33,15 +44,19 @@ class EventRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Event::class);
     }
-
     /**
      * Query all records.
      *
-     * @return QueryBuilder Query builder
+     * @return \Doctrine\ORM\QueryBuilder Query builder
      */
     public function queryAll(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
+            ->select(
+                'partial event.{id, createdAt, updatedAt, title}',
+                'partial category.{id, title}'
+            )
+            ->join('event.category', 'category')
             ->orderBy('event.updatedAt', 'DESC');
     }
 

@@ -6,9 +6,12 @@
 namespace App\Controller;
 
 use App\Entity\Event;
-use App\Repository\EventRepository;
+use App\Service\EventService;
+use App\Service\EventServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
 use Symfony\Component\Routing\Attribute\Route;
 
 /**
@@ -18,30 +21,31 @@ use Symfony\Component\Routing\Attribute\Route;
 class EventController extends AbstractController
 {
     /**
+     * Constructor.
+     */
+    public function __construct(private readonly EventServiceInterface $eventService)
+    {
+    }
+
+    /**
      * Index action.
      *
-     * @param EventRepository $eventRepository Event repository
+     * @param int $page Page number
      *
      * @return Response HTTP response
      */
-    #[Route(
-        name: 'event_index',
-        methods: 'GET'
-    )]
-    public function index(eventRepository $eventRepository): Response
+    #[Route(name: 'event_index', methods: 'GET')]
+    public function index(#[MapQueryParameter] int $page = 1): Response
     {
-        $event = $eventRepository->findAll();
+        $pagination = $this->eventService->getPaginatedList($page);
 
-        return $this->render(
-            'event/index.html.twig',
-            ['events' => $event]
-        );
+        return $this->render('event/index.html.twig', ['pagination' => $pagination]);
     }
 
     /**
      * Show action.
      *
-     * @param Event $event Event entity
+     * @param Event $event Event
      *
      * @return Response HTTP response
      */
@@ -49,13 +53,10 @@ class EventController extends AbstractController
         '/{id}',
         name: 'event_show',
         requirements: ['id' => '[1-9]\d*'],
-        methods: 'GET',
+        methods: 'GET'
     )]
     public function show(Event $event): Response
     {
-        return $this->render(
-            'event/show.html.twig',
-            ['event' => $event]
-        );
+        return $this->render('event/show.html.twig', ['event' => $event]);
     }
 }

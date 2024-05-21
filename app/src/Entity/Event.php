@@ -57,6 +57,15 @@ class Event
     private ?string $title = null;
 
     /**
+     * Category.
+     *
+     * @var Category
+     */
+    #[ORM\ManyToOne(targetEntity: Category::class, fetch: 'EXTRA_LAZY')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Category $category = null;
+
+    /**
      * Getter for Id.
      *
      * @return int|null Id
@@ -124,5 +133,17 @@ class Event
     public function setTitle(?string $title): void
     {
         $this->title = $title;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): static
+    {
+        $this->category = $category;
+
+        return $this;
     }
 }
