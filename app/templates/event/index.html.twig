@@ -6,12 +6,12 @@
 
 {% block body %}
     <h1>{{ 'title.event_list'|trans }}</h1>
-    {% if pagination is defined and pagination.items|length %}
-
-        <div class="navigation text-center">
-            {{ knp_pagination_render(pagination) }}
+    <div class="row mb-3">
+        <div class="col">
+            <a href="{{ path('event_create') }}" class="btn btn-primary">{{ 'action.add_new'|trans }}</a>
         </div>
-
+    </div>
+    {% if pagination is defined and pagination.items|length %}
         <table class="table table-striped">
             <thead>
             <tr>
@@ -20,7 +20,6 @@
                 <th>{{ knp_pagination_sortable(pagination, 'label.updated_at'|trans, 'event.updatedAt') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'event.title') }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label_category'|trans, 'category.title') }}</th>
             </tr>
             </thead>
             <tbody>
@@ -31,9 +30,9 @@
                     <td>{{ event.updatedAt|date('Y/m/d') }}</td>
                     <td>{{ event.title }}</td>
                     <td>
-                        <a href="{{ url('event_show', {id: event.id}) }}" title="{{ 'action.show'|trans }}">
-                            {{ 'action.show'|trans }}
-                        </a>
+                        <a href="{{ path('event_show', {id: event.id}) }}" title="{{ 'action.show'|trans }}" class="btn btn-info">{{ 'action.show'|trans }}</a>
+                        <a href="{{ path('event_edit', {id: event.id}) }}" title="{{ 'action.edit'|trans }}" class="btn btn-warning">{{ 'action.edit'|trans }}</a>
+                        <a href="{{ path('event_delete', {id: event.id}) }}" title="{{ 'action.delete'|trans }}" class="btn btn-danger">{{ 'action.delete'|trans }}</a>
                     </td>
                 </tr>
             {% endfor %}
@@ -43,10 +42,10 @@
         <div class="navigation text-center">
             {{ knp_pagination_render(pagination) }}
         </div>
-
     {% else %}
-        <p>
-            {{ 'message.empty_list'|trans }}
-        </p>
+        {% include 'default/_single_alert_message.html.twig' with {
+            type: 'warning',
+            message: 'message.empty_list'|trans
+        } %}
     {% endif %}
 {% endblock %}

@@ -6,11 +6,12 @@
 namespace App\DataFixtures;
 
 use App\Entity\Category;
-use App\Entity\Enum\EventStatus;
-use App\Entity\Tag;
 use App\Entity\Event;
 use App\Entity\User;
+use DateTimeImmutable;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Doctrine\Persistence\ObjectManager;
+use Faker\Generator;
 
 /**
  * Class EventFixtures.
@@ -26,7 +27,7 @@ class EventFixtures extends AbstractBaseFixtures implements DependentFixtureInte
      */
     public function loadData(): void
     {
-        if (null === $this->manager || null === $this->faker) {
+        if (!$this->manager instanceof ObjectManager || !$this->faker instanceof Generator) {
             return;
         }
 
@@ -34,18 +35,24 @@ class EventFixtures extends AbstractBaseFixtures implements DependentFixtureInte
             $event = new Event();
             $event->setTitle($this->faker->sentence);
             $event->setCreatedAt(
-                \DateTimeImmutable::createFromMutable(
+                DateTimeImmutable::createFromMutable(
                     $this->faker->dateTimeBetween('-100 days', '-1 days')
                 )
             );
             $event->setUpdatedAt(
-                \DateTimeImmutable::createFromMutable(
+                DateTimeImmutable::createFromMutable(
                     $this->faker->dateTimeBetween('-100 days', '-1 days')
                 )
             );
+
             /** @var Category $category */
             $category = $this->getRandomReference('categories');
             $event->setCategory($category);
+
+
+            /** @var User $author */
+            $author = $this->getRandomReference('users');
+            $event->setAuthor($author);
 
             return $event;
         });
@@ -59,10 +66,10 @@ class EventFixtures extends AbstractBaseFixtures implements DependentFixtureInte
      *
      * @return string[] of dependencies
      *
-     * @psalm-return array{0: CategoryFixtures::class}
+     * @psalm-return array{0: CategoryFixtures::class, 1: UserFixtures::class}
      */
     public function getDependencies(): array
     {
-        return [CategoryFixtures::class];
+        return [CategoryFixtures::class, UserFixtures::class];
     }
 }

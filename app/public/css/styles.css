@@ -1,3 +1,10 @@
-p {
+/* Pogrubienie etykiet pól */
+label.control-label {
+    font-weight: bold;
+}
+
+/* Dodanie czerwonej gwiazdki dla pól wymaganych */
+.required:after {
+    content: '*';
     color: red;
 }
