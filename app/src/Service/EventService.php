@@ -5,6 +5,8 @@
 
 namespace App\Service;
 
+use App\Dto\EventListFiltersDto;
+use App\Dto\EventListInputFiltersDto;
 use App\Entity\Event;
 use App\Entity\User;
 use App\Repository\EventRepository;
@@ -30,25 +32,30 @@ class EventService implements EventServiceInterface
     /**
      * Constructor.
      *
-     * @param EventRepository    $eventRepository Event repository
-     * @param PaginatorInterface $paginator       Paginator
+     * @param CategoryServiceInterface $categoryService Category service
+     * @param PaginatorInterface       $paginator       Paginator
+     * @param EventRepository           $eventRepository  Event repository
      */
-    public function __construct(private readonly EventRepository $eventRepository, private readonly PaginatorInterface $paginator)
+    public function __construct(private readonly CategoryServiceInterface $categoryService, private readonly PaginatorInterface $paginator, private readonly EventRepository $eventRepository)
     {
     }
+
 
     /**
      * Get paginated list.
      *
-     * @param int  $page   Page number
-     * @param User $author Author
+     * @param int                       $page    Page number
+     * @param User                      $author  Event author
+     * @param EventListInputFiltersDto $filters Filters
      *
-     * @return PaginationInterface<string, mixed> Paginated list
+     * @return PaginationInterface<SlidingPagination> Paginated list
      */
-    public function getPaginatedList(int $page, User $author): PaginationInterface
+    public function getPaginatedList(int $page, User $author, EventListInputFiltersDto $filters): PaginationInterface
     {
+        $filters = $this->prepareFilters($filters);
+
         return $this->paginator->paginate(
-            $this->eventRepository->queryByAuthor($author),
+            $this->eventRepository->queryByAuthor($author, $filters),
             $page,
             self::PAGINATOR_ITEMS_PER_PAGE
         );
@@ -73,4 +80,19 @@ class EventService implements EventServiceInterface
     {
         $this->eventRepository->delete($event);
     }
+    /**
+     * Prepare filters for the events list.
+     *
+     * @param EventListInputFiltersDto $filters Raw filters from request
+     *
+     * @return EventListFiltersDto Result filters
+     */
+    private function prepareFilters(EventListInputFiltersDto $filters): EventListFiltersDto
+    {
+        return new EventListFiltersDto(
+            null !== $filters->categoryId ? $this->categoryService->findOneById($filters->categoryId) : null
+        );
+    }
+
+
 }

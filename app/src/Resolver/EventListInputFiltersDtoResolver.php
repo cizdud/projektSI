@@ -6,7 +6,6 @@
 namespace App\Resolver;
 
 use App\Dto\EventListInputFiltersDto;
-use App\Entity\Enum\EventStatus;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Controller\ValueResolverInterface;
 use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
@@ -33,8 +32,7 @@ class EventListInputFiltersDtoResolver implements ValueResolverInterface
         }
 
         $categoryId = $request->query->get('categoryId');
-        $statusId = $request->query->get('statusId', EventStatus::ACTIVE->value);
 
-        return [new EventListInputFiltersDto($categoryId, $statusId)];
+        return [new EventListInputFiltersDto($categoryId)];
     }
 }

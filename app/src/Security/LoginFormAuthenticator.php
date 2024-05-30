@@ -37,7 +37,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
      *
      * @const string
      */
-    private const DEFAULT_ROUTE = 'task_index';
+    private const DEFAULT_ROUTE = 'event_index';
 
     /**
      * Constructor.

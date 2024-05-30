@@ -18,6 +18,8 @@
             <dd>{{ event.title }}</dd>
             <dt>{{ 'label.category'|trans }}</dt>
             <dd>{{ event.category.title }}</dd>
+            <dt>{{ 'label.event_date'|trans }}</dt>
+            <dd>{{ event.eventDate|date('Y/m/d H:i') }}</dd>
         </dl>
         <p>
             <a href="{{ url('event_index') }}" title="{{ 'action.back_to_list'|trans }}">

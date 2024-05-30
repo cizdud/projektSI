@@ -5,15 +5,18 @@
 
 namespace App\Controller;
 
+use App\Dto\EventListInputFiltersDto;
 use App\Entity\Event;
 use App\Entity\User;
 use App\Form\Type\EventType;
+use App\Resolver\EventListInputFiltersDtoResolver;
 use App\Service\EventServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapQueryParameter;
+use Symfony\Component\HttpKernel\Attribute\MapQueryString;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -36,20 +39,28 @@ class EventController extends AbstractController
     /**
      * Index action.
      *
-     * @param int $page Page number
+     * @param EventListInputFiltersDto $filters Input filters
+     * @param int                      $page    Page number
      *
      * @return Response HTTP response
      */
-    #[Route(name: 'event_index', methods: 'GET')]
-    public function index(#[MapQueryParameter] int $page = 1): Response
+    #[Route(
+        name: 'event_index',
+        methods: 'GET'
+    )]
+    public function index(#[MapQueryString(resolver: EventListInputFiltersDtoResolver::class)] EventListInputFiltersDto $filters, #[MapQueryParameter] int $page = 1): Response
     {
+        /** @var User $user */
+        $user = $this->getUser();
         $pagination = $this->eventService->getPaginatedList(
             $page,
-            $this->getUser()
+            $user,
+            $filters
         );
 
         return $this->render('event/index.html.twig', ['pagination' => $pagination]);
     }
+
 
     /**
      * Show action.

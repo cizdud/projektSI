@@ -5,6 +5,7 @@
 
 namespace App\Service;
 
+use App\Dto\EventListInputFiltersDto;
 use App\Entity\Event;
 use App\Entity\User;
 use Knp\Component\Pager\Pagination\PaginationInterface;
@@ -22,7 +23,7 @@ interface EventServiceInterface
      *
      * @return PaginationInterface<string, mixed> Paginated list
      */
-    public function getPaginatedList(int $page, User $author): PaginationInterface;
+    public function getPaginatedList(int $page, User $author, EventListInputFiltersDto $filters): PaginationInterface;
 
     /**
      * Save entity.

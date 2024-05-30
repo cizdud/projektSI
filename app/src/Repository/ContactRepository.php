@@ -1,28 +1,25 @@
 <?php
 /**
- * Category repository.
+ * Contact repository.
  */
 namespace App\Repository;
 
-use App\Entity\Category;
+use App\Entity\Contact;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Exception\ORMException;
-use Doctrine\ORM\NonUniqueResultException;
-use Doctrine\ORM\NoResultException;
-use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Category|null find($id, $lockMode = null, $lockVersion = null)
- * @method Category|null findOneBy(array $criteria, array $orderBy = null)
- * @method Category[]    findAll()
- * @method Category[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Contact|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Contact|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Contact[]    findAll()
+ * @method Contact[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  *
- * @extends ServiceEntityRepository<Category>
+ * @extends ServiceEntityRepository<Contact>
  */
-class CategoryRepository extends ServiceEntityRepository
+class ContactRepository extends ServiceEntityRepository
 {
     /**
      * Constructor.
@@ -31,7 +28,7 @@ class CategoryRepository extends ServiceEntityRepository
      */
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Category::class);
+        parent::__construct($registry, Contact::class);
     }
 
     /**
@@ -42,8 +39,7 @@ class CategoryRepository extends ServiceEntityRepository
     public function queryAll(): QueryBuilder
     {
         return $this->getOrCreateQueryBuilder()
-            ->select('partial category.{id, createdAt, updatedAt, title}')
-            ->orderBy('category.updatedAt', 'DESC');
+            ->orderBy('contact.updatedAt', 'DESC');
     }
 
     /**
@@ -55,32 +51,31 @@ class CategoryRepository extends ServiceEntityRepository
      */
     private function getOrCreateQueryBuilder(QueryBuilder $queryBuilder = null): QueryBuilder
     {
-        return $queryBuilder ?? $this->createQueryBuilder('category');
+        return $queryBuilder ?? $this->createQueryBuilder('contact');
     }
+
     /**
      * Save entity.
      *
-     * @param Category $category Category entity
+     * @param Contact $contact Contact entity
      */
-    public function save(Category $category): void
+    public function save(Contact $contact): void
     {
         assert($this->_em instanceof EntityManager);
-        $this->_em->persist($category);
-        $this->_em->flush();
-    }
-    /**
-     * Delete entity.
-     *
-     * @param Category $category Category entity
-     *
-     * @throws ORMException
-     * @throws OptimisticLockException
-     */
-    public function delete(Category $category): void
-    {
-        assert($this->_em instanceof EntityManager);
-        $this->_em->remove($category);
+        $this->_em->persist($contact);
         $this->_em->flush();
     }
 
+    /**
+     * Delete entity.
+     *
+     * @param Contact $contact Contact entity
+     * @throws ORMException
+     */
+    public function delete(Contact $contact): void
+    {
+        assert($this->_em instanceof EntityManager);
+        $this->_em->remove($contact);
+        $this->_em->flush();
+    }
 }

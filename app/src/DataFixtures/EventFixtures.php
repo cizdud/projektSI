@@ -8,7 +8,6 @@ namespace App\DataFixtures;
 use App\Entity\Category;
 use App\Entity\Event;
 use App\Entity\User;
-use DateTimeImmutable;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Generator;
@@ -35,20 +34,24 @@ class EventFixtures extends AbstractBaseFixtures implements DependentFixtureInte
             $event = new Event();
             $event->setTitle($this->faker->sentence);
             $event->setCreatedAt(
-                DateTimeImmutable::createFromMutable(
+                \DateTimeImmutable::createFromMutable(
                     $this->faker->dateTimeBetween('-100 days', '-1 days')
                 )
             );
             $event->setUpdatedAt(
-                DateTimeImmutable::createFromMutable(
+                \DateTimeImmutable::createFromMutable(
                     $this->faker->dateTimeBetween('-100 days', '-1 days')
+                )
+            );
+            $event->setEventDate(
+                \DateTimeImmutable::createFromMutable(
+                    $this->faker->dateTimeBetween('-100 days', '+100 days')
                 )
             );
 
             /** @var Category $category */
             $category = $this->getRandomReference('categories');
             $event->setCategory($category);
-
 
             /** @var User $author */
             $author = $this->getRandomReference('users');

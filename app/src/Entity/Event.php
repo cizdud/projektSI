@@ -8,6 +8,7 @@ namespace App\Entity;
 use App\Repository\EventRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Event.
@@ -29,7 +30,7 @@ class Event
     /**
      * Created at.
      *
-     * @var DateTimeImmutable|null
+     * @var \DateTimeImmutable|null
      */
     #[ORM\Column(type: 'datetime_immutable')]
     #[Gedmo\Timestampable(on: 'create')]
@@ -38,7 +39,7 @@ class Event
     /**
      * Updated at.
      *
-     * @var DateTimeImmutable|null
+     * @var \DateTimeImmutable|null
      */
     #[ORM\Column(type: 'datetime_immutable')]
     #[Gedmo\Timestampable(on: 'update')]
@@ -59,14 +60,29 @@ class Event
 
     /**
      * Author.
-     *
-     * @var User|null
      */
     #[ORM\ManyToOne(targetEntity: User::class, fetch: 'EXTRA_LAZY')]
     #[ORM\JoinColumn(nullable: false)]
     #[Assert\NotBlank]
     #[Assert\Type(User::class)]
     private ?User $author;
+
+    /**
+     * Event date.
+     *
+     * @var \DateTimeImmutable|null
+     */
+    #[ORM\Column(type: 'datetime_immutable')]
+    #[Assert\NotNull]
+    private ?\DateTimeImmutable $eventDate = null;
+
+    /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        $this->eventDate = new \DateTimeImmutable();
+    }
 
     /**
      * Getter for Id.
@@ -138,11 +154,23 @@ class Event
         $this->title = $title;
     }
 
+    /**
+     * Getter for category.
+     *
+     * @return Category|null Category
+     */
     public function getCategory(): ?Category
     {
         return $this->category;
     }
 
+    /**
+     * Setter for category.
+     *
+     * @param Category|null $category Category
+     *
+     * @return static
+     */
     public function setCategory(?Category $category): static
     {
         $this->category = $category;
@@ -150,15 +178,47 @@ class Event
         return $this;
     }
 
+    /**
+     * Getter for author.
+     *
+     * @return User|null Author
+     */
     public function getAuthor(): ?User
     {
         return $this->author;
     }
 
+    /**
+     * Setter for author.
+     *
+     * @param User|null $author Author
+     *
+     * @return static
+     */
     public function setAuthor(?User $author): static
     {
         $this->author = $author;
 
         return $this;
+    }
+
+    /**
+     * Getter for event date.
+     *
+     * @return \DateTimeImmutable|null Event date
+     */
+    public function getEventDate(): ?\DateTimeImmutable
+    {
+        return $this->eventDate;
+    }
+
+    /**
+     * Setter for event date.
+     *
+     * @param \DateTimeImmutable|null $eventDate Event date
+     */
+    public function setEventDate(?\DateTimeImmutable $eventDate): void
+    {
+        $this->eventDate = $eventDate ?: new \DateTimeImmutable();
     }
 }

@@ -1,23 +1,20 @@
 <?php
 /**
- * Event type.
+ * Contact type.
  */
 
 namespace App\Form\Type;
 
-use App\Entity\Category;
-use App\Entity\Event;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use App\Entity\Contact;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class EventType.
+ * Class ContactType.
  */
-class EventType extends AbstractType
+class ContactType extends AbstractType
 {
     /**
      * Builds the form.
@@ -32,37 +29,27 @@ class EventType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->add(
-            'title',
-            TextType::class,
-            [
-                'label' => 'label.title',
+        $builder
+            ->add('name', TextType::class, [
+                'label' => 'Name',
                 'required' => true,
-                'attr' => ['max_length' => 255],
+                'attr' => ['maxlength' => 64],
+            ])
+            ->add('surname', TextType::class, [
+                'label' => 'Surname',
+                'required' => true,
+                'attr' => ['maxlength' => 64],
+            ])
+            ->add('address', TextType::class, [
+                'label' => 'Address',
+                'required' => false,
+                'attr' => ['maxlength' => 255],
+            ])
+            ->add('phone', TextType::class, [
+                'label' => 'Phone',
+                'required' => false,
+                'attr' => ['maxlength' => 32],
             ]);
-        $builder->add(
-            'category',
-            EntityType::class,
-            [
-                'class' => Category::class,
-                'choice_label' => function ($category): string {
-                    return $category->getTitle();
-                },
-                'label' => 'label.category',
-                'placeholder' => 'label.none',
-                'required' => true,
-            ]
-        );
-        $builder->add(
-            'eventDate',
-            DateTimeType::class,
-            [
-                'label' => 'label.event_date',
-                'required' => true,
-                'widget' => 'single_text',
-                'attr' => ['class' => 'js-datepicker'],
-            ]
-        );
     }
 
     /**
@@ -72,7 +59,7 @@ class EventType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults(['data_class' => Event::class]);
+        $resolver->setDefaults(['data_class' => Contact::class]);
     }
 
     /**
@@ -85,6 +72,6 @@ class EventType extends AbstractType
      */
     public function getBlockPrefix(): string
     {
-        return 'event';
+        return 'contact';
     }
 }
