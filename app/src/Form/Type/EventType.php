@@ -36,7 +36,7 @@ class EventType extends AbstractType
             'title',
             TextType::class,
             [
-                'label' => 'label.title',
+                'label' => 'Title', // Zmieniona etykieta na "Title"
                 'required' => true,
                 'attr' => ['max_length' => 255],
             ]);
@@ -48,7 +48,7 @@ class EventType extends AbstractType
                 'choice_label' => function ($category): string {
                     return $category->getTitle();
                 },
-                'label' => 'label.category',
+                'label' => 'Category', // Zmieniona etykieta na "Category"
                 'placeholder' => 'label.none',
                 'required' => true,
             ]
@@ -57,7 +57,7 @@ class EventType extends AbstractType
             'eventDate',
             DateTimeType::class,
             [
-                'label' => 'label.event_date',
+                'label' => 'Event Date', // Zmieniona etykieta na "Event Date"
                 'required' => true,
                 'widget' => 'single_text',
                 'attr' => ['class' => 'js-datepicker'],

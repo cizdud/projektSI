@@ -144,6 +144,39 @@ class EventRepository extends ServiceEntityRepository
         return $queryBuilder;
     }
 
+    public function queryActualEvents(EventListFiltersDto $filters): QueryBuilder
+    {
+        $queryBuilder = $this->getOrCreateQueryBuilder()
+            ->select(
+                'partial event.{id, createdAt, updatedAt, title, eventDate}',
+                'partial category.{id, title}'
+            )
+            ->join('event.category', 'category')
+            ->where('event.eventDate >= :start_date')
+            ->andWhere('event.eventDate <= :end_date')
+            ->setParameter('start_date', new \DateTime('-7 days'))
+            ->setParameter('end_date', new \DateTime())
+            ->orderBy('event.eventDate', 'ASC');
+
+        return $this->applyFiltersToList($queryBuilder, $filters);
+    }
+
+    public function queryFutureEvents(EventListFiltersDto $filters): QueryBuilder
+    {
+        $queryBuilder = $this->getOrCreateQueryBuilder()
+            ->select(
+                'partial event.{id, createdAt, updatedAt, title, eventDate}',
+                'partial category.{id, title}'
+            )
+            ->join('event.category', 'category')
+            ->where('event.eventDate > :current_date')
+            ->setParameter('current_date', new \DateTime())
+            ->orderBy('event.eventDate', 'ASC');
+
+        return $this->applyFiltersToList($queryBuilder, $filters);
+    }
+
+
     /**
      * Apply filters to paginated list.
      *

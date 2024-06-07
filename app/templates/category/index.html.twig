@@ -1,25 +1,25 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'title.category_list'|trans }}
+    Category List
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'title.category_list'|trans }}</h1>
+    <h1>Category List</h1>
     <div class="row mb-3">
         <div class="col">
-            <a href="{{ path('category_create') }}" class="btn btn-primary">{{ 'action.add_new'|trans }}</a>
+            <a href="{{ path('category_create') }}" class="btn btn-primary">Add new</a>
         </div>
     </div>
     {% if pagination is defined and pagination.items|length %}
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'category.id') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.created_at'|trans, 'category.createdAt') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.updated_at'|trans, 'category.updatedAt') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'category.title') }}</th>
-                <th>{{ 'label.actions'|trans }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'ID', 'category.id') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Created At', 'category.createdAt') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Updated At', 'category.updatedAt') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Title', 'category.title') }}</th>
+                <th>Actions</th>
             </tr>
             </thead>
             <tbody>
@@ -30,9 +30,9 @@
                     <td>{{ category.updatedAt|date('Y/m/d') }}</td>
                     <td>{{ category.title }}</td>
                     <td>
-                        <a href="{{ path('category_show', {id: category.id}) }}" title="{{ 'action.show'|trans }}" class="btn btn-info">{{ 'action.show'|trans }}</a>
-                        <a href="{{ path('category_edit', {id: category.id}) }}" title="{{ 'action.edit'|trans }}" class="btn btn-warning">{{ 'action.edit'|trans }}</a>
-                        <a href="{{ path('category_delete', {id: category.id}) }}" title="{{ 'action.delete'|trans }}" class="btn btn-danger">{{ 'action.delete'|trans }}</a>
+                        <a href="{{ path('category_show', {id: category.id}) }}" title="Show" class="btn btn-info">Show</a>
+                        <a href="{{ path('category_edit', {id: category.id}) }}" title="Edit" class="btn btn-warning">Edit</a>
+                        <a href="{{ path('category_delete', {id: category.id}) }}" title="Delete" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>
             {% endfor %}
@@ -45,7 +45,7 @@
     {% else %}
         {% include 'default/_single_alert_message.html.twig' with {
             type: 'warning',
-            message: 'message.empty_list'|trans
+            message: 'No categories found.'
         } %}
     {% endif %}
 {% endblock %}

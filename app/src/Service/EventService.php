@@ -27,6 +27,7 @@ class EventService implements EventServiceInterface
      *
      * @constant int
      */
+
     private const PAGINATOR_ITEMS_PER_PAGE = 10;
 
     /**
@@ -34,18 +35,17 @@ class EventService implements EventServiceInterface
      *
      * @param CategoryServiceInterface $categoryService Category service
      * @param PaginatorInterface       $paginator       Paginator
-     * @param EventRepository           $eventRepository  Event repository
+     * @param EventRepository          $eventRepository Event repository
      */
     public function __construct(private readonly CategoryServiceInterface $categoryService, private readonly PaginatorInterface $paginator, private readonly EventRepository $eventRepository)
     {
     }
 
-
     /**
      * Get paginated list.
      *
-     * @param int                       $page    Page number
-     * @param User                      $author  Event author
+     * @param int                      $page    Page number
+     * @param User                     $author  Event author
      * @param EventListInputFiltersDto $filters Filters
      *
      * @return PaginationInterface<SlidingPagination> Paginated list
@@ -80,6 +80,7 @@ class EventService implements EventServiceInterface
     {
         $this->eventRepository->delete($event);
     }
+
     /**
      * Prepare filters for the events list.
      *
@@ -93,6 +94,4 @@ class EventService implements EventServiceInterface
             null !== $filters->categoryId ? $this->categoryService->findOneById($filters->categoryId) : null
         );
     }
-
-
 }

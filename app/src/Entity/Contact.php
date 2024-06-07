@@ -69,9 +69,9 @@ class Contact
      *
      * @var string|null
      */
-    #[ORM\Column(type: 'string', length: 32, nullable: true)]
+    #[ORM\Column(type: 'string', length: 12, nullable: true)]
     #[Assert\Type(type: 'string')]
-    #[Assert\Length(min: 3)]
+    #[Assert\Length(min: 9, max: 12)]
     #[Assert\Regex('/^[0-9]*$/')]
     private ?string $phone;
 

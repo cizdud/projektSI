@@ -1,23 +1,22 @@
 <?php
-/**
- * Event list filters DTO.
- */
 
 namespace App\Dto;
 
 use App\Entity\Category;
 
-/**
- * Class EventListFiltersDto.
- */
 class EventListFiltersDto
 {
-    /**
-     * Constructor.
-     *
-     * @param Category|null $category   Category entity
-     */
-    public function __construct(public ?Category $category)
+    public ?Category $category;
+    public ?\DateTimeInterface $dateFrom;
+    public ?\DateTimeInterface $dateTo;
+
+    public function __construct(?Category $category = null, ?\DateTimeInterface $dateFrom = null, ?\DateTimeInterface $dateTo = null)
     {
+        $this->category = $category;
+        $this->dateFrom = $dateFrom;
+        $this->dateTo = $dateTo;
+
+
+
     }
 }
