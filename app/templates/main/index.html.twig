@@ -1,77 +1,21 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'Events'|trans }}
+    {{ 'Welcome to Personal Information Management Application'|trans }}
 {% endblock %}
 
 {% block body %}
-    <div class="title_of_page">
-        <h1>{{ 'Events'|trans }}</h1>
+    <div class="container">
+        <div class="title_of_page">
+            <h1>{{ 'Welcome to Personal Information Management Application'|trans }}</h1>
+        </div>
+
+        <div class="navigation">
+            <ul>
+                <li><a href="{{ path('event_index') }}" class="btn btn-outline-primary">{{ 'Events'|trans }}</a></li>
+                <li><a href="{{ path('contact_index') }}" class="btn btn-outline-primary">{{ 'Contact'|trans }}</a></li>
+                <li><a href="{{ path('category_index') }}" class="btn btn-outline-primary">{{ 'Categories'|trans }}</a></li>
+            </ul>
+        </div>
     </div>
-
-    {# Actual Events #}
-    <h3>{{ 'Actual events'|trans }}</h3>
-    {% if actualEventsPagination is defined and actualEventsPagination.items|length %}
-        <div class="navigation text-center">
-            {{ knp_pagination_render(actualEventsPagination) }}
-        </div>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>{{ 'Title'|trans }}</th>
-                <th>{{ 'Category'|trans }}</th>
-                <th>{{ 'Date'|trans }}</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for event in actualEventsPagination.items %}
-                <tr>
-                    <td>{{ event.title }}</td>
-                    <td>{{ event.category.title }}</td>
-                    <td>{{ event.eventDate|date('Y/m/d H:i') }}</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-        <div class="navigation text-center">
-            {{ knp_pagination_render(actualEventsPagination) }}
-        </div>
-    {% else %}
-        <p>
-            {{ 'message_empty_list'|trans }}
-        </p>
-    {% endif %}
-
-    {# Future Events #}
-    <h3>{{ 'Future events'|trans }}</h3>
-    {% if futureEventsPagination is defined and futureEventsPagination.items|length %}
-        <div class="navigation text-center">
-            {{ knp_pagination_render(futureEventsPagination) }}
-        </div>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>{{ 'Title'|trans }}</th>
-                <th>{{ 'Category'|trans }}</th>
-                <th>{{ 'Date'|trans }}</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for event in futureEventsPagination.items %}
-                <tr>
-                    <td>{{ event.title }}</td>
-                    <td>{{ event.category.title }}</td>
-                    <td>{{ event.eventDate|date('Y/m/d H:i') }}</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-        <div class="navigation text-center">
-            {{ knp_pagination_render(futureEventsPagination) }}
-        </div>
-    {% else %}
-        <p>
-            {{ 'message_empty_list'|trans }}
-        </p>
-    {% endif %}
 {% endblock %}
