@@ -1,27 +1,27 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    Event List
+    {{ 'title.event_list'|trans }}
 {% endblock %}
 
 {% block body %}
-    <h1>Event List</h1>
+    <h1>{{ 'title.event_list'|trans }}</h1>
     <div class="row mb-3">
         <div class="col">
-            <a href="{{ path('event_create') }}" class="btn btn-primary">Add new</a>
+            <a href="{{ url('event_create') }}" class="btn btn-primary">{{ 'action.add_new'|trans }}</a>
         </div>
     </div>
     {% if pagination is defined and pagination.items|length %}
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>{{ knp_pagination_sortable(pagination, 'ID', 'event.id') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'Created At', 'event.createdAt') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'Updated At', 'event.updatedAt') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'Title', 'event.title') }}</th>
-                <th>Category</th>
-                <th>{{ knp_pagination_sortable(pagination, 'Event Date', 'event.eventDate') }}</th>
-                <th>Actions</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.id'|trans, 'event.id') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.created_at'|trans, 'event.createdAt') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.updated_at'|trans, 'event.updatedAt') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'event.title') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.category'|trans, 'event.category.title') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.event_date'|trans, 'event.eventDate') }}</th>
+                <th>{{ 'label.actions'|trans }}</th>
             </tr>
             </thead>
             <tbody>
@@ -32,15 +32,15 @@
                     <td>{{ event.updatedAt|date('Y/m/d') }}</td>
                     <td>{{ event.title }}</td>
                     <td>
-                        <a class="btn btn-outline-primary" href="{{ path('event_index', {'categoryId' : event.category.id}) }}" title="{{ event.category.title }}">
+                        <a class="btn btn-outline-primary" href="{{ url('event_index', {'categoryId' : event.category.id}) }}" title="{{ event.category.title }}">
                             {{ event.category.title }}
                         </a>
                     </td>
                     <td>{{ event.eventDate|date('Y/m/d H:i') }}</td>
                     <td>
-                        <a href="{{ path('event_show', {id: event.id}) }}" title="Show" class="btn btn-info">Show</a>
-                        <a href="{{ path('event_edit', {id: event.id}) }}" title="Edit" class="btn btn-warning">Edit</a>
-                        <a href="{{ path('event_delete', {id: event.id}) }}" title="Delete" class="btn btn-danger">Delete</a>
+                        <a href="{{ url('event_show', {id: event.id}) }}" title="{{ 'action.show'|trans }}" class="btn btn-info">{{ 'action.show'|trans }}</a>
+                        <a href="{{ url('event_edit', {id: event.id}) }}" title="{{ 'action.edit'|trans }}" class="btn btn-warning">{{ 'action.edit'|trans }}</a>
+                        <a href="{{ url('event_delete', {id: event.id}) }}" title="{{ 'action.delete'|trans }}" class="btn btn-danger">{{ 'action.delete'|trans }}</a>
                     </td>
                 </tr>
             {% endfor %}
@@ -53,7 +53,7 @@
     {% else %}
         {% include 'default/_single_alert_message.html.twig' with {
             type: 'warning',
-            message: 'No events found.'
+            message: 'message.empty_list'|trans
         } %}
     {% endif %}
 {% endblock %}

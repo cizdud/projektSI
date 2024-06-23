@@ -31,22 +31,22 @@ class ContactType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Name',
+                'label' => 'label.name',
                 'required' => true,
                 'attr' => ['maxlength' => 64],
             ])
             ->add('surname', TextType::class, [
-                'label' => 'Surname',
+                'label' => 'label.surname',
                 'required' => true,
                 'attr' => ['maxlength' => 64],
             ])
             ->add('address', TextType::class, [
-                'label' => 'Address',
+                'label' => 'label.address',
                 'required' => false,
                 'attr' => ['maxlength' => 255],
             ])
             ->add('phone', TextType::class, [
-                'label' => 'Phone',
+                'label' => 'label.phone',
                 'required' => false,
                 'attr' => ['maxlength' => 32],
             ]);

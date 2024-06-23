@@ -1,35 +1,35 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'Contact Details' }} {{ contact.id|default('') }}
+    {{ 'title.contact_details'|trans({'%id%': contact.id|default('')}) }}
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'Contact Details' }} {{ contact.id|default('') }}</h1>
-    <a href="{{ url('contact_edit', {id: contact.id}) }}" title="{{ 'Edit' }}">
-        {{ 'Edit' }}
+    <h1>{{ 'title.contact_details'|trans({'%id%': contact.id|default('')}) }}</h1>
+    <a href="{{ url('contact_edit', {id: contact.id}) }}" title="{{ 'action.edit'|trans }}">
+        {{ 'action.edit'|trans }}
     </a>
     {% if contact is defined and contact %}
         <dl class="dl-horizontal">
-            <dt>{{ 'ID' }}</dt>
+            <dt>{{ 'label.id'|trans }}</dt>
             <dd>{{ contact.id }}</dd>
-            <dt>{{ 'Name' }}</dt>
+            <dt>{{ 'label.name'|trans }}</dt>
             <dd>{{ contact.name }}</dd>
-            <dt>{{ 'Surname' }}</dt>
+            <dt>{{ 'label.surname'|trans }}</dt>
             <dd>{{ contact.surname }}</dd>
-            <dt>{{ 'Phone' }}</dt>
+            <dt>{{ 'label.phone'|trans }}</dt>
             <dd>{{ contact.phone }}</dd>
-            <dt>{{ 'Address' }}</dt>
+            <dt>{{ 'label.address'|trans }}</dt>
             <dd>{{ contact.address }}</dd>
         </dl>
         <p>
-            <a href="{{ url('contact_index') }}" title="{{ 'Back to list' }}">
-                {{ 'Back to list' }}
+            <a href="{{ url('contact_index') }}" title="{{ 'action.back_to_list'|trans }}">
+                {{ 'action.back_to_list'|trans }}
             </a>
         </p>
     {% else %}
         <p>
-            {{ 'Contact not found.' }}
+            {{ 'message.item_not_found'|trans }}
         </p>
     {% endif %}
 {% endblock %}

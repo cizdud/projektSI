@@ -1,23 +1,23 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'Contact List' }}
+    {{ 'title.contact_list'|trans }}
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'Contact List' }}</h1>
-    <a href="{{ url('contact_create') }}" class="btn btn-primary">{{ 'Add New' }}</a>
+    <h1>{{ 'title.contact_list'|trans }}</h1>
+    <a href="{{ url('contact_create') }}" class="btn btn-primary">{{ 'action.add_new'|trans }}</a>
     {% if pagination is defined and pagination.items|length %}
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>{{ 'Name' }}</th>
-                <th>{{ 'Surname' }}</th>
-                <th>{{ 'Phone' }}</th>
-                <th>{{ 'Address' }}</th>
-                <th>{{ 'Created At' }}</th>
-                <th>{{ 'Updated At' }}</th>
-                <th>{{ 'Actions' }}</th>
+                <th>{{ 'label.name'|trans }}</th>
+                <th>{{ 'label.surname'|trans }}</th>
+                <th>{{ 'label.phone'|trans }}</th>
+                <th>{{ 'label.address'|trans }}</th>
+                <th>{{ 'label.created_at'|trans }}</th>
+                <th>{{ 'label.updated_at'|trans }}</th>
+                <th>{{ 'label.actions'|trans }}</th>
             </tr>
             </thead>
             <tbody>
@@ -30,9 +30,9 @@
                     <td>{{ contact.createdAt|date('Y-m-d H:i:s') }}</td>
                     <td>{{ contact.updatedAt|date('Y-m-d H:i:s') }}</td>
                     <td>
-                        <a href="{{ url('contact_show', {id: contact.id}) }}" class="btn btn-info">{{ 'View' }}</a>
-                        <a href="{{ url('contact_edit', {id: contact.id}) }}" class="btn btn-warning">{{ 'Edit' }}</a>
-                        <a href="{{ url('contact_delete', {id: contact.id}) }}" class="btn btn-danger">{{ 'Delete' }}</a>
+                        <a href="{{ url('contact_show', {id: contact.id}) }}" class="btn btn-info">{{ 'action.view'|trans }}</a>
+                        <a href="{{ url('contact_edit', {id: contact.id}) }}" class="btn btn-warning">{{ 'action.edit'|trans }}</a>
+                        <a href="{{ url('contact_delete', {id: contact.id}) }}" class="btn btn-danger">{{ 'action.delete'|trans }}</a>
                     </td>
                 </tr>
             {% endfor %}
@@ -42,6 +42,6 @@
             {{ knp_pagination_render(pagination) }}
         </div>
     {% else %}
-        <p>{{ 'No contacts found.' }}</p>
+        <p>{{ 'message_empty_list'|trans }}</p>
     {% endif %}
 {% endblock %}

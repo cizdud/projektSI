@@ -1,30 +1,30 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    Category Details {{ category.id|default('') }}
+    {{ 'title.category_details'|trans({'%id%': category.id|default('')}) }}
 {% endblock %}
 
 {% block body %}
-    <h1>Category Details {{ category.id|default('') }}</h1>
+    <h1>{{ 'title.category_details'|trans({'%id%': category.id|default('')}) }}</h1>
     {% if category is defined %}
         <dl class="dl-horizontal">
-            <dt>ID</dt>
+            <dt>{{ 'label.id'|trans }}</dt>
             <dd>{{ category.id }}</dd>
-            <dt>Created At</dt>
-            <dd>{{ category.createdAt|format_date('long') }}</dd>
-            <dt>Updated At</dt>
-            <dd>{{ category.updatedAt|format_date('long') }}</dd>
-            <dt>Title</dt>
+            <dt>{{ 'label.created_at'|trans }}</dt>
+            <dd>{{ category.createdAt|date('Y/m/d') }}</dd>
+            <dt>{{ 'label.updated_at'|trans }}</dt>
+            <dd>{{ category.updatedAt|date('Y/m/d') }}</dd>
+            <dt>{{ 'label.title'|trans }}</dt>
             <dd>{{ category.title }}</dd>
         </dl>
         <p>
-            <a href="{{ path('category_index') }}" title="Back to list">
-                Back to list
+            <a href="{{ path('category_index') }}" title="{{ 'action.back_to_list'|trans }}">
+                {{ 'action.back_to_list'|trans }}
             </a>
         </p>
     {% else %}
         <p>
-            Category not found.
+            {{ 'message.record_not_found'|trans }}
         </p>
     {% endif %}
 {% endblock %}
