@@ -6,12 +6,9 @@
 namespace App\Entity;
 
 use App\Repository\ContactRepository;
-use DateTimeImmutable;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
-
 
 /**
  * Class Contact.
@@ -22,8 +19,6 @@ class Contact
 {
     /**
      * Primary key.
-     *
-     * @var int|null
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -32,8 +27,6 @@ class Contact
 
     /**
      * Name.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 64)]
     #[Assert\Type(type: 'string')]
@@ -44,8 +37,6 @@ class Contact
 
     /**
      * Surname.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 64)]
     #[Assert\Type(type: 'string')]
@@ -56,8 +47,6 @@ class Contact
 
     /**
      * Address.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     #[Assert\Type(type: 'string')]
@@ -66,8 +55,6 @@ class Contact
 
     /**
      * Phone.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 12, nullable: true)]
     #[Assert\Type(type: 'string')]
@@ -77,8 +64,6 @@ class Contact
 
     /**
      * Created at.
-     *
-     * @var \DateTimeImmutable|null
      */
     #[ORM\Column(type: 'datetime_immutable')]
     #[Gedmo\Timestampable(on: 'create')]
@@ -86,8 +71,6 @@ class Contact
 
     /**
      * Updated at.
-     *
-     * @var \DateTimeImmutable|null
      */
     #[ORM\Column(type: 'datetime_immutable')]
     #[Gedmo\Timestampable(on: 'update')]
@@ -117,8 +100,6 @@ class Contact
      * Setter for Name.
      *
      * @param string|null $name Name
-     *
-     * @return Contact
      */
     public function setName(?string $name): self
     {
@@ -141,8 +122,6 @@ class Contact
      * Setter for Surname.
      *
      * @param string|null $surname Surname
-     *
-     * @return Contact
      */
     public function setSurname(?string $surname): self
     {
@@ -153,8 +132,6 @@ class Contact
 
     /**
      * Getter for Address.
-     *
-     * @return string|null
      */
     public function getAddress(): ?string
     {
@@ -165,8 +142,6 @@ class Contact
      * Setter for Address.
      *
      * @param string|null $address Address
-     *
-     * @return Contact
      */
     public function setAddress(?string $address): self
     {
@@ -177,8 +152,6 @@ class Contact
 
     /**
      * Getter for Phone.
-     *
-     * @return string|null
      */
     public function getPhone(): ?string
     {
@@ -189,8 +162,6 @@ class Contact
      * Setter for Phone.
      *
      * @param string|null $phone Phone
-     *
-     * @return Contact
      */
     public function setPhone(?string $phone): self
     {

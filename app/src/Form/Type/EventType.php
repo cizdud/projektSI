@@ -39,7 +39,8 @@ class EventType extends AbstractType
                 'label' => 'label.title',
                 'required' => true,
                 'attr' => ['max_length' => 255],
-            ]);
+            ]
+        );
         $builder->add(
             'category',
             EntityType::class,
@@ -57,10 +58,12 @@ class EventType extends AbstractType
             'eventDate',
             DateTimeType::class,
             [
-                'label' => 'label.event_date', // Zmieniona etykieta na "Event Date"
+                'label' => 'label.event_date',
                 'required' => true,
                 'widget' => 'single_text',
-                'attr' => ['class' => 'js-datepicker'],
+                'attr' => [
+                    'class' => 'js-datepicker',
+                ],
             ]
         );
     }

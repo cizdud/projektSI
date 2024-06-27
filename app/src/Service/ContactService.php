@@ -7,7 +7,6 @@ namespace App\Service;
 
 use App\Entity\Contact;
 use App\Repository\ContactRepository;
-use Doctrine\ORM\NonUniqueResultException;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
@@ -69,4 +68,3 @@ class ContactService implements ContactServiceInterface
         $this->contactRepository->delete($contact);
     }
 }
-

@@ -8,7 +8,6 @@ namespace App\Entity;
 use App\Repository\EventRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Event.
@@ -30,7 +29,7 @@ class Event
     /**
      * Created at.
      *
-     * @var \DateTimeImmutable|null
+     * @var DateTimeImmutable|null
      */
     #[ORM\Column(type: 'datetime_immutable')]
     #[Gedmo\Timestampable(on: 'create')]
@@ -39,7 +38,7 @@ class Event
     /**
      * Updated at.
      *
-     * @var \DateTimeImmutable|null
+     * @var DateTimeImmutable|null
      */
     #[ORM\Column(type: 'datetime_immutable')]
     #[Gedmo\Timestampable(on: 'update')]
@@ -69,20 +68,9 @@ class Event
 
     /**
      * Event date.
-     *
-     * @var \DateTimeImmutable|null
      */
-    #[ORM\Column(type: 'datetime_immutable')]
-    #[Assert\NotNull]
-    private ?\DateTimeImmutable $eventDate = null;
-
-    /**
-     * Constructor.
-     */
-    public function __construct()
-    {
-        $this->eventDate = new \DateTimeImmutable();
-    }
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private ?\DateTimeInterface $eventDate = null;
 
     /**
      * Getter for Id.
@@ -154,23 +142,11 @@ class Event
         $this->title = $title;
     }
 
-    /**
-     * Getter for category.
-     *
-     * @return Category|null Category
-     */
     public function getCategory(): ?Category
     {
         return $this->category;
     }
 
-    /**
-     * Setter for category.
-     *
-     * @param Category|null $category Category
-     *
-     * @return static
-     */
     public function setCategory(?Category $category): static
     {
         $this->category = $category;
@@ -178,23 +154,11 @@ class Event
         return $this;
     }
 
-    /**
-     * Getter for author.
-     *
-     * @return User|null Author
-     */
     public function getAuthor(): ?User
     {
         return $this->author;
     }
 
-    /**
-     * Setter for author.
-     *
-     * @param User|null $author Author
-     *
-     * @return static
-     */
     public function setAuthor(?User $author): static
     {
         $this->author = $author;
@@ -204,21 +168,23 @@ class Event
 
     /**
      * Getter for event date.
-     *
-     * @return \DateTimeImmutable|null Event date
      */
-    public function getEventDate(): ?\DateTimeImmutable
+    public function getEventDate(): ?\DateTimeInterface
     {
         return $this->eventDate;
     }
 
     /**
-     * Setter for event date.
+     * Set the event date.
      *
-     * @param \DateTimeImmutable|null $eventDate Event date
+     * @param \DateTimeInterface|null $eventDate The event date
      */
-    public function setEventDate(?\DateTimeImmutable $eventDate): void
+    public function setEventDate(?\DateTimeInterface $eventDate): void
     {
-        $this->eventDate = $eventDate ?: new \DateTimeImmutable();
+        if (null === $eventDate) {
+            $this->eventDate = new \DateTime();
+        } else {
+            $this->eventDate = $eventDate;
+        }
     }
 }

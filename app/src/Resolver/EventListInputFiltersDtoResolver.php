@@ -32,7 +32,9 @@ class EventListInputFiltersDtoResolver implements ValueResolverInterface
         }
 
         $categoryId = $request->query->get('categoryId');
+        $dateFrom = $request->query->get('dateFrom') ? new \DateTimeImmutable($request->query->get('dateFrom')) : null;
+        $dateTo = $request->query->get('dateTo') ? new \DateTimeImmutable($request->query->get('dateTo')) : null;
 
-        return [new EventListInputFiltersDto($categoryId)];
+        return [new EventListInputFiltersDto($categoryId, $dateFrom, $dateTo)];
     }
 }

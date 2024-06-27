@@ -27,7 +27,6 @@ class EventService implements EventServiceInterface
      *
      * @constant int
      */
-
     private const PAGINATOR_ITEMS_PER_PAGE = 10;
 
     /**
@@ -91,7 +90,9 @@ class EventService implements EventServiceInterface
     private function prepareFilters(EventListInputFiltersDto $filters): EventListFiltersDto
     {
         return new EventListFiltersDto(
-            null !== $filters->categoryId ? $this->categoryService->findOneById($filters->categoryId) : null
+            null !== $filters->categoryId ? $this->categoryService->findOneById($filters->categoryId) : null,
+            $filters->dateFrom,
+            $filters->dateTo
         );
     }
 }

@@ -15,8 +15,5 @@ class EventListFiltersDto
         $this->category = $category;
         $this->dateFrom = $dateFrom;
         $this->dateTo = $dateTo;
-
-
-
     }
 }

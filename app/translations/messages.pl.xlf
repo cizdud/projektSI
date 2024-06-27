@@ -211,6 +211,10 @@
         <target>Edytowano pomyślnie.</target>
       </trans-unit>
 
+           <trans-unit id="action.filter">
+              <source>action.filter</source>
+              <target>Filtruj po datach</target>
+      </trans-unit>
 
     </body>
   </file>

@@ -1,3 +1,4 @@
+{# templates/event/index.html.twig #}
 {% extends 'base.html.twig' %}
 
 {% block title %}
@@ -11,6 +12,19 @@
             <a href="{{ url('event_create') }}" class="btn btn-primary">{{ 'action.add_new'|trans }}</a>
         </div>
     </div>
+    <form method="get" action="{{ path('event_index') }}">
+        <div class="row mb-3">
+            <div class="col">
+                <input type="date" name="dateFrom" value="{{ filters.dateFrom ? filters.dateFrom|date('Y-m-d') : '' }}" class="form-control" placeholder="From Date">
+            </div>
+            <div class="col">
+                <input type="date" name="dateTo" value="{{ filters.dateTo ? filters.dateTo|date('Y-m-d') : '' }}" class="form-control" placeholder="To Date">
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-primary">{{ 'action.filter'|trans }}</button>
+            </div>
+        </div>
+    </form>
     {% if pagination is defined and pagination.items|length %}
         <table class="table table-striped">
             <thead>
@@ -19,7 +33,7 @@
                 <th>{{ knp_pagination_sortable(pagination, 'label.created_at'|trans, 'event.createdAt') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.updated_at'|trans, 'event.updatedAt') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'event.title') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.category'|trans, 'event.category.title') }}</th>
+                <th>{{ 'label.category'|trans }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.event_date'|trans, 'event.eventDate') }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
             </tr>
@@ -31,29 +45,21 @@
                     <td>{{ event.createdAt|date('Y/m/d') }}</td>
                     <td>{{ event.updatedAt|date('Y/m/d') }}</td>
                     <td>{{ event.title }}</td>
+                    <td>{{ event.category.title }}</td>
+                    <td>{{ event.eventDate ? event.eventDate|date('Y/m/d H:i') : '' }}</td>
                     <td>
-                        <a class="btn btn-outline-primary" href="{{ url('event_index', {'categoryId' : event.category.id}) }}" title="{{ event.category.title }}">
-                            {{ event.category.title }}
-                        </a>
-                    </td>
-                    <td>{{ event.eventDate|date('Y/m/d H:i') }}</td>
-                    <td>
-                        <a href="{{ url('event_show', {id: event.id}) }}" title="{{ 'action.show'|trans }}" class="btn btn-info">{{ 'action.show'|trans }}</a>
-                        <a href="{{ url('event_edit', {id: event.id}) }}" title="{{ 'action.edit'|trans }}" class="btn btn-warning">{{ 'action.edit'|trans }}</a>
-                        <a href="{{ url('event_delete', {id: event.id}) }}" title="{{ 'action.delete'|trans }}" class="btn btn-danger">{{ 'action.delete'|trans }}</a>
+                        <a href="{{ path('event_show', {'id': event.id}) }}" class="btn btn-sm btn-info">{{ 'action.show'|trans }}</a>
+                        <a href="{{ path('event_edit', {'id': event.id}) }}" class="btn btn-sm btn-warning">{{ 'action.edit'|trans }}</a>
+                        <a href="{{ path('event_delete', {'id': event.id}) }}" class="btn btn-sm btn-danger">{{ 'action.delete'|trans }}</a>
                     </td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
-
-        <div class="navigation text-center">
+        <div class="navigation">
             {{ knp_pagination_render(pagination) }}
         </div>
     {% else %}
-        {% include 'default/_single_alert_message.html.twig' with {
-            type: 'warning',
-            message: 'message.empty_list'|trans
-        } %}
+        <p>{{ 'message.empty_list'|trans }}</p>
     {% endif %}
 {% endblock %}

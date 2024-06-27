@@ -30,7 +30,7 @@ class EventController extends AbstractController
      * Constructor.
      *
      * @param EventServiceInterface $eventService Event service
-     * @param TranslatorInterface $translator Translator
+     * @param TranslatorInterface   $translator   Translator
      */
     public function __construct(private readonly EventServiceInterface $eventService, private readonly TranslatorInterface $translator)
     {
@@ -48,19 +48,18 @@ class EventController extends AbstractController
         name: 'event_index',
         methods: 'GET'
     )]
-    public function index(#[MapQueryString(resolver: EventListInputFiltersDtoResolver::class)] EventListInputFiltersDto $filters, #[MapQueryParameter] int $page = 1): Response
-    {
-        /** @var User $user */
+    public function index(
+        #[MapQueryString(resolver: EventListInputFiltersDtoResolver::class)] EventListInputFiltersDto $filters,
+        #[MapQueryParameter] int $page = 1
+    ): Response {
         $user = $this->getUser();
-        $pagination = $this->eventService->getPaginatedList(
-            $page,
-            $user,
-            $filters
-        );
+        $pagination = $this->eventService->getPaginatedList($page, $user, $filters);
 
-        return $this->render('event/index.html.twig', ['pagination' => $pagination]);
+        return $this->render('event/index.html.twig', [
+            'pagination' => $pagination,
+            'filters' => $filters
+        ]);
     }
-
 
     /**
      * Show action.
@@ -86,7 +85,6 @@ class EventController extends AbstractController
             ['event' => $event]
         );
     }
-
 
     /**
      * Create action.
@@ -130,7 +128,7 @@ class EventController extends AbstractController
      * Edit action.
      *
      * @param Request $request HTTP request
-     * @param Event $event Event entity
+     * @param Event   $event   Event entity
      *
      * @return Response HTTP response
      */
@@ -180,7 +178,7 @@ class EventController extends AbstractController
      * Delete action.
      *
      * @param Request $request HTTP request
-     * @param Event $event Event entity
+     * @param Event   $event   Event entity
      *
      * @return Response HTTP response
      */

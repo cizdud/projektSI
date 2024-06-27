@@ -200,7 +200,6 @@
         <target>Created successfully.</target>
       </trans-unit>
 
-      <!-- New translation for label.none -->
       <trans-unit id="label.none">
         <source>label.none</source>
         <target>None</target>
@@ -214,6 +213,11 @@
       <trans-unit id="label.event_title">
         <source>label.event_title</source>
         <target>Event Title</target>
+      </trans-unit>
+
+      <trans-unit id="action.filter">
+        <source>action.filter</source>
+        <target>Filter by date</target>
       </trans-unit>
 
     </body>
