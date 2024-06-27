@@ -216,6 +216,12 @@
               <target>Filtruj po datach</target>
       </trans-unit>
 
+
+       <trans-unit id="event.date.year_exceed">
+          <source>event.date.year_exceed</source>
+          <target>Rok nie może być większy niż 2099.</target>
+      </trans-unit>
+
     </body>
   </file>
 </xliff>

@@ -57,7 +57,7 @@ class EventController extends AbstractController
 
         return $this->render('event/index.html.twig', [
             'pagination' => $pagination,
-            'filters' => $filters
+            'filters' => $filters,
         ]);
     }
 

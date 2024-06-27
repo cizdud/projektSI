@@ -12,13 +12,24 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormError;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class EventType.
  */
 class EventType extends AbstractType
 {
+    private $translator;
+
+    public function __construct(TranslatorInterface $translator)
+    {
+        $this->translator = $translator;
+    }
+
     /**
      * Builds the form.
      *
@@ -66,6 +77,20 @@ class EventType extends AbstractType
                 ],
             ]
         );
+        $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) {
+            /** @var Event $eventData */
+            $eventData = $event->getData();
+            if ($eventData instanceof Event && $eventData->getEventDate() instanceof \DateTimeInterface) {
+                $eventDate = $eventData->getEventDate();
+                $year = (int) $eventDate->format('Y');
+
+                if ($year > 2099) {
+                    $errorMessage = $this->translator->trans('event.date.year_exceed', ['%year%' => 2099]);
+
+                    $event->getForm()->get('eventDate')->addError(new FormError($errorMessage));
+                }
+            }
+        });
     }
 
     /**

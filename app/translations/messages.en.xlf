@@ -220,6 +220,12 @@
         <target>Filter by date</target>
       </trans-unit>
 
+      <trans-unit id="event.date.year_exceed">
+          <source>event.date.year_exceed</source>
+          <target>The year cannot be greater than 2099.</target>
+      </trans-unit>
+
+
     </body>
   </file>
 </xliff>
