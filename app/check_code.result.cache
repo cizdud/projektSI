@@ -1,0 +1,221 @@
+
+Found 0 of 35 files that can be fixed in 0.979 seconds, 18.00 MB memory used
+
+FILE: /home/wwwroot/app/src/Dto/EventListInputFiltersDto.php
+----------------------------------------------------------------------------------
+FOUND 3 ERRORS AFFECTING 2 LINES
+----------------------------------------------------------------------------------
+ 13 | ERROR | Doc comment for parameter "$dateFrom" missing
+ 13 | ERROR | Doc comment for parameter "$dateTo" missing
+ 18 | ERROR | Declare all the arguments on the same line as the method/function
+    |       | name, no matter how many arguments there are.
+----------------------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Dto/EventListFiltersDto.php
+------------------------------------------------------------------------
+FOUND 2 ERRORS AND 1 WARNING AFFECTING 3 LINES
+------------------------------------------------------------------------
+  3 | WARNING | The license block has to be present at the top
+    |         |                 of every PHP file, before the namespace
+  7 | ERROR   | Missing doc comment for class EventListFiltersDto
+ 13 | ERROR   | Missing doc comment for function __construct()
+------------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Repository/MainRepository.php
+----------------------------------------------------------------------
+FOUND 1 ERROR AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 23 | ERROR | Doc comment for parameter "$registry" missing
+----------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Repository/CategoryRepository.php
+----------------------------------------------------------------------------------
+FOUND 1 ERROR AFFECTING 1 LINE
+----------------------------------------------------------------------------------
+ 65 | ERROR | Declare public methods first,then protected ones and finally
+    |       | private ones
+----------------------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Repository/ContactRepository.php
+----------------------------------------------------------------------------------
+FOUND 1 ERROR AFFECTING 1 LINE
+----------------------------------------------------------------------------------
+ 63 | ERROR | Declare public methods first,then protected ones and finally
+    |       | private ones
+----------------------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Repository/EventRepository.php
+----------------------------------------------------------------------------------
+FOUND 1 ERROR AFFECTING 1 LINE
+----------------------------------------------------------------------------------
+ 137 | ERROR | Declare public methods first,then protected ones and finally
+     |       | private ones
+----------------------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Repository/UserRepository.php
+------------------------------------------------------------------------
+FOUND 3 ERRORS AND 1 WARNING AFFECTING 3 LINES
+------------------------------------------------------------------------
+  3 | WARNING | The license block has to be present at the top
+    |         |                 of every PHP file, before the namespace
+ 17 | ERROR   | Missing doc comment for function __construct()
+ 22 | ERROR   | Doc comment for parameter "$user" missing
+ 22 | ERROR   | Doc comment for parameter "$newHashedPassword" missing
+------------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Form/Type/EventType.php
+----------------------------------------------------------------------
+FOUND 1 ERROR AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 28 | ERROR | Missing doc comment for function __construct()
+----------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Entity/Category.php
+----------------------------------------------------------------------
+FOUND 2 ERRORS AFFECTING 2 LINES
+----------------------------------------------------------------------
+ 134 | ERROR | Missing doc comment for function getSlug()
+ 139 | ERROR | Missing doc comment for function setSlug()
+----------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Entity/Event.php
+----------------------------------------------------------------------
+FOUND 5 ERRORS AFFECTING 5 LINES
+----------------------------------------------------------------------
+ 145 | ERROR | Missing doc comment for function getCategory()
+ 150 | ERROR | Missing doc comment for function setCategory()
+ 157 | ERROR | Missing doc comment for function getAuthor()
+ 162 | ERROR | Missing doc comment for function setAuthor()
+ 171 | ERROR | Missing @return tag in function comment
+----------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Entity/User.php
+----------------------------------------------------------------------
+FOUND 1 ERROR AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 159 | ERROR | Missing @return tag in function comment
+----------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Entity/Contact.php
+----------------------------------------------------------------------
+FOUND 8 ERRORS AFFECTING 8 LINES
+----------------------------------------------------------------------
+ 103 | ERROR | Missing @return tag in function comment
+ 125 | ERROR | Missing @return tag in function comment
+ 135 | ERROR | Missing @return tag in function comment
+ 145 | ERROR | Missing @return tag in function comment
+ 155 | ERROR | Missing @return tag in function comment
+ 165 | ERROR | Missing @return tag in function comment
+ 173 | ERROR | Missing doc comment for function getCreatedAt()
+ 192 | ERROR | Missing doc comment for function getUpdatedAt()
+----------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/DataFixtures/AppFixtures.php
+------------------------------------------------------------------------
+FOUND 2 ERRORS AND 1 WARNING AFFECTING 3 LINES
+------------------------------------------------------------------------
+  3 | WARNING | The license block has to be present at the top
+    |         |                 of every PHP file, before the namespace
+  8 | ERROR   | Missing doc comment for class AppFixtures
+ 10 | ERROR   | Missing doc comment for function load()
+------------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Controller/SecurityController.php
+------------------------------------------------------------------------
+FOUND 3 ERRORS AND 1 WARNING AFFECTING 4 LINES
+------------------------------------------------------------------------
+  3 | WARNING | The license block has to be present at the top
+    |         |                 of every PHP file, before the namespace
+ 10 | ERROR   | Missing doc comment for class SecurityController
+ 13 | ERROR   | Missing doc comment for function login()
+ 28 | ERROR   | Missing doc comment for function logout()
+------------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Controller/EventController.php
+----------------------------------------------------------------------------------
+FOUND 1 ERROR AFFECTING 1 LINE
+----------------------------------------------------------------------------------
+ 51 | ERROR | Declare all the arguments on the same line as the method/function
+    |       | name, no matter how many arguments there are.
+----------------------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Controller/ContactController.php
+----------------------------------------------------------------------
+FOUND 1 ERROR AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 35 | ERROR | Doc comment for parameter "$page" missing
+----------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Controller/MainController.php
+-----------------------------------------------------------------------
+FOUND 0 ERRORS AND 1 WARNING AFFECTING 1 LINE
+-----------------------------------------------------------------------
+ 3 | WARNING | The license block has to be present at the top
+   |         |                 of every PHP file, before the namespace
+-----------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Controller/CategoryController.php
+----------------------------------------------------------------------
+FOUND 1 ERROR AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 35 | ERROR | Doc comment for parameter "$page" missing
+----------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Service/CategoryServiceInterface.php
+----------------------------------------------------------------------
+FOUND 1 ERROR AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 32 | ERROR | Missing doc comment for function delete()
+----------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Service/CategoryService.php
+----------------------------------------------------------------------
+FOUND 2 ERRORS AFFECTING 2 LINES
+----------------------------------------------------------------------
+ 27 | ERROR | Doc comment for parameter "$eventRepository" missing
+ 63 | ERROR | Missing doc comment for function delete()
+----------------------------------------------------------------------
+
+
+FILE: /home/wwwroot/app/src/Service/EventServiceInterface.php
+----------------------------------------------------------------------
+FOUND 1 ERROR AFFECTING 1 LINE
+----------------------------------------------------------------------
+ 18 | ERROR | Doc comment for parameter "$filters" missing
+----------------------------------------------------------------------
+
+Time: 1.38 secs; Memory: 10MB
+
+ ----------- ---------- -------------------- ---------------------- 
+  State       Domain     Id                   Message Preview (en)  
+ ----------- ---------- -------------------- ---------------------- 
+   missing    messages   message_empty_list   message_empty_list    
+   missing    messages   message.form_error   message.form_error    
+ ----------- ---------- -------------------- ---------------------- 
+
+ ----------- ---------- -------------------- ---------------------- ------------------------------- 
+  State       Domain     Id                   Message Preview (pl)   Fallback Message Preview (en)  
+ ----------- ---------- -------------------- ---------------------- ------------------------------- 
+   missing    messages   message_empty_list   message_empty_list     message_empty_list             
+   missing    messages   message.form_error   message.form_error     message.form_error             
+ ----------- ---------- -------------------- ---------------------- ------------------------------- 
+

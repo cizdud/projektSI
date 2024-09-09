@@ -33,8 +33,7 @@
                 <th>{{ knp_pagination_sortable(pagination, 'label.created_at'|trans, 'event.createdAt') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.updated_at'|trans, 'event.updatedAt') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'event.title') }}</th>
-                <th>{{ 'label.category'|trans }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label.event_date'|trans, 'event.eventDate') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.category'|trans, 'category.title') }}</th>                <th>{{ knp_pagination_sortable(pagination, 'label.event_date'|trans, 'event.eventDate') }}</th>
                 <th>{{ 'label.actions'|trans }}</th>
             </tr>
             </thead>
@@ -51,6 +50,9 @@
                         <a href="{{ path('event_show', {'id': event.id}) }}" class="btn btn-sm btn-info">{{ 'action.show'|trans }}</a>
                         <a href="{{ path('event_edit', {'id': event.id}) }}" class="btn btn-sm btn-warning">{{ 'action.edit'|trans }}</a>
                         <a href="{{ path('event_delete', {'id': event.id}) }}" class="btn btn-sm btn-danger">{{ 'action.delete'|trans }}</a>
+                        <a class="btn btn-outline-primary" href="{{ path('event_index', {'categoryId' : event.category.id}) }}" title="{{ event.category.title }}">
+                            {{ event.category.title }}
+                        </a>
                     </td>
                 </tr>
             {% endfor %}
