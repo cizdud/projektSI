@@ -27,8 +27,8 @@
                     <td>{{ contact.surname }}</td>
                     <td>{{ contact.phone }}</td>
                     <td>{{ contact.address }}</td>
-                    <td>{{ contact.createdAt|date('Y-m-d H:i:s') }}</td>
-                    <td>{{ contact.updatedAt|date('Y-m-d H:i:s') }}</td>
+                    <td>{{ contact.createdAt|date('d M Y H:i') }}</td>
+                    <td>{{ contact.updatedAt|date('d M Y H:i') }}</td>
                     <td>
                         <a href="{{ url('contact_show', {id: contact.id}) }}" class="btn btn-info">{{ 'action.view'|trans }}</a>
                         <a href="{{ url('contact_edit', {id: contact.id}) }}" class="btn btn-warning">{{ 'action.edit'|trans }}</a>

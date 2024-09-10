@@ -222,6 +222,65 @@
           <target>Rok nie może być większy niż 2099.</target>
       </trans-unit>
 
+            <trans-unit id="title.main_index">
+              <source>title.main_index</source>
+              <target>Strona główna</target>
+            </trans-unit>
+
+            <trans-unit id="title.event_list">
+              <source>title.event_list</source>
+              <target>Wydarzenia</target>
+            </trans-unit>
+
+            <trans-unit id="title.contact_list">
+              <source>title.contact_list</source>
+              <target>Kontakty</target>
+            </trans-unit>
+
+            <trans-unit id="title.category_list">
+              <source>title.category_list</source>
+              <target>Kategorie</target>
+
+
+            <trans-unit id="title.welcome">
+                <source>title.welcome</source>
+                <target>Witaj!</target>
+            </trans-unit>
+
+                  <trans-unit id="title.login">
+                    <source>title.login</source>
+                    <target>Zaloguj się</target>
+                  </trans-unit>
+                  <trans-unit id="login.please_sign_in">
+                    <source>login.please_sign_in</source>
+                    <target>Proszę się zalogować</target>
+                  </trans-unit>
+                  <trans-unit id="label.email">
+                    <source>label.email</source>
+                    <target>Email</target>
+                  </trans-unit>
+                  <trans-unit id="label.password">
+                    <source>label.password</source>
+                    <target>Hasło</target>
+                  </trans-unit>
+                  <trans-unit id="login.remember_me">
+                    <source>login.remember_me</source>
+                    <target>Zapamiętaj mnie</target>
+                  </trans-unit>
+                  <trans-unit id="login.logged_in_as">
+                    <source>login.logged_in_as</source>
+                    <target>Jesteś zalogowany jako %username%</target>
+                  </trans-unit>
+                  <trans-unit id="action.logout">
+                    <source>action.logout</source>
+                    <target>Wyloguj się</target>
+                  </trans-unit>
+                  <trans-unit id="action.login">
+                    <source>action.login</source>
+                    <target>Zaloguj się</target>
+                  </trans-unit>
+
+
     </body>
   </file>
 </xliff>

@@ -15,10 +15,10 @@
     <form method="get" action="{{ path('event_index') }}">
         <div class="row mb-3">
             <div class="col">
-                <input type="date" name="dateFrom" value="{{ filters.dateFrom ? filters.dateFrom|date('Y-m-d') : '' }}" class="form-control" placeholder="From Date">
+                <input type="date" name="dateFrom" value="{{ filters.dateFrom ? filters.dateFrom|date('d M Y') : '' }}" class="form-control" placeholder="From Date">
             </div>
             <div class="col">
-                <input type="date" name="dateTo" value="{{ filters.dateTo ? filters.dateTo|date('Y-m-d') : '' }}" class="form-control" placeholder="To Date">
+                <input type="date" name="dateTo" value="{{ filters.dateTo ? filters.dateTo|date('d M Y') : '' }}" class="form-control" placeholder="To Date">
             </div>
             <div class="col">
                 <button type="submit" class="btn btn-primary">{{ 'action.filter'|trans }}</button>
@@ -41,11 +41,11 @@
             {% for event in pagination.items %}
                 <tr>
                     <td>{{ event.id }}</td>
-                    <td>{{ event.createdAt|date('Y/m/d') }}</td>
-                    <td>{{ event.updatedAt|date('Y/m/d') }}</td>
+                    <td>{{ event.createdAt|date('d M Y') }}</td>
+                    <td>{{ event.updatedAt|date('d M Y') }}</td>
                     <td>{{ event.title }}</td>
                     <td>{{ event.category.title }}</td>
-                    <td>{{ event.eventDate ? event.eventDate|date('Y/m/d H:i') : '' }}</td>
+                    <td>{{ event.eventDate ? event.eventDate|date('d M Y H:i') : '' }}</td>
                     <td>
                         <a href="{{ path('event_show', {'id': event.id}) }}" class="btn btn-sm btn-info">{{ 'action.show'|trans }}</a>
                         <a href="{{ path('event_edit', {'id': event.id}) }}" class="btn btn-sm btn-warning">{{ 'action.edit'|trans }}</a>
