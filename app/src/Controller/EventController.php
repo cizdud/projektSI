@@ -36,6 +36,7 @@ class EventController extends AbstractController
     {
     }
 
+
     /**
      * Index action.
      *
@@ -44,14 +45,9 @@ class EventController extends AbstractController
      *
      * @return Response HTTP response
      */
-    #[Route(
-        name: 'event_index',
-        methods: 'GET'
-    )]
-    public function index(
-        #[MapQueryString(resolver: EventListInputFiltersDtoResolver::class)] EventListInputFiltersDto $filters,
-        #[MapQueryParameter] int $page = 1
-    ): Response {
+    #[Route(name: 'event_index', methods: 'GET')]
+    public function index(#[MapQueryString(resolver: EventListInputFiltersDtoResolver::class)] EventListInputFiltersDto $filters, #[MapQueryParameter] int $page = 1): Response
+    {
         $user = $this->getUser();
         $pagination = $this->eventService->getPaginatedList($page, $user, $filters);
 
@@ -80,10 +76,9 @@ class EventController extends AbstractController
             return $this->redirectToRoute('event_index');
         }
 
-        return $this->render(
-            'event/show.html.twig',
-            ['event' => $event]
-        );
+        return $this->render('event/show.html.twig', [
+            'event' => $event,
+        ]);
     }
 
     /**
@@ -118,10 +113,9 @@ class EventController extends AbstractController
             return $this->redirectToRoute('event_index');
         }
 
-        return $this->render(
-            'event/create.html.twig',
-            ['form' => $form->createView()]
-        );
+        return $this->render('event/create.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
     /**
@@ -165,13 +159,10 @@ class EventController extends AbstractController
             return $this->redirectToRoute('event_index');
         }
 
-        return $this->render(
-            'event/edit.html.twig',
-            [
-                'form' => $form->createView(),
-                'event' => $event,
-            ]
-        );
+        return $this->render('event/edit.html.twig', [
+            'form' => $form->createView(),
+            'event' => $event,
+        ]);
     }
 
     /**
@@ -215,12 +206,9 @@ class EventController extends AbstractController
             return $this->redirectToRoute('event_index');
         }
 
-        return $this->render(
-            'event/delete.html.twig',
-            [
-                'form' => $form->createView(),
-                'event' => $event,
-            ]
-        );
+        return $this->render('event/delete.html.twig', [
+            'form' => $form->createView(),
+            'event' => $event,
+        ]);
     }
 }

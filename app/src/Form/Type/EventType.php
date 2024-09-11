@@ -23,8 +23,11 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 class EventType extends AbstractType
 {
-    private $translator;
-
+    /**
+     * Constructor.
+     *
+     * @param TranslatorInterface $translator Translator service
+     */
     public function __construct(TranslatorInterface $translator)
     {
         $this->translator = $translator;

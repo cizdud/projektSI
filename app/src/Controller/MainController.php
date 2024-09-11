@@ -1,4 +1,7 @@
 <?php
+/**
+ * MainController class.
+ */
 
 namespace App\Controller;
 

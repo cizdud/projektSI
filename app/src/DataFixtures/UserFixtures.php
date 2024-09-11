@@ -36,7 +36,7 @@ class UserFixtures extends AbstractBaseFixtures
             return;
         }
 
-        $this->createMany(1, 'admins', function (int $i) {
+        $this->createMany(1, 'users', function (int $i) {
             $user = new User();
             $user->setEmail('admin@example.com');
             $user->setRoles([UserRole::ROLE_ADMIN->value]);

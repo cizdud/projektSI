@@ -22,6 +22,8 @@ class MainRepository extends ServiceEntityRepository
 
     /**
      * MainRepository constructor.
+     *
+     * @param ManagerRegistry $registry the manager registry
      */
     public function __construct(ManagerRegistry $registry)
     {

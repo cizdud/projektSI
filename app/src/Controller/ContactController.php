@@ -18,6 +18,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class ContactController.
+ *
+ * Manages the CRUD operations for Contact entities.
  */
 #[Route('/contact')]
 class ContactController extends AbstractController
@@ -35,6 +37,10 @@ class ContactController extends AbstractController
     /**
      * Index action.
      *
+     * Displays a paginated list of contacts.
+     *
+     * @param int $page Page number for pagination
+     *
      * @return Response HTTP response
      */
     #[Route(name: 'contact_index', methods: 'GET')]
@@ -48,16 +54,13 @@ class ContactController extends AbstractController
     /**
      * Show action.
      *
+     * Displays a single contact entity.
+     *
      * @param Contact $contact Contact entity
      *
      * @return Response HTTP response
      */
-    #[Route(
-        '/{id}',
-        name: 'contact_show',
-        requirements: ['id' => '[1-9]\d*'],
-        methods: 'GET'
-    )]
+    #[Route('/{id}', name: 'contact_show', requirements: ['id' => '[1-9]\d*'], methods: 'GET')]
     public function show(Contact $contact): Response
     {
         return $this->render('contact/show.html.twig', ['contact' => $contact]);
@@ -66,15 +69,13 @@ class ContactController extends AbstractController
     /**
      * Create action.
      *
+     * Creates a new contact entity.
+     *
      * @param Request $request HTTP request
      *
      * @return Response HTTP response
      */
-    #[Route(
-        '/create',
-        name: 'contact_create',
-        methods: 'GET|POST',
-    )]
+    #[Route('/create', name: 'contact_create', methods: 'GET|POST')]
     public function create(Request $request): Response
     {
         $contact = new Contact();
@@ -84,22 +85,18 @@ class ContactController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->contactService->save($contact);
 
-            $this->addFlash(
-                'success',
-                $this->translator->trans('message.created_successfully')
-            );
+            $this->addFlash('success', $this->translator->trans('message.created_successfully'));
 
             return $this->redirectToRoute('contact_index');
         }
 
-        return $this->render(
-            'contact/create.html.twig',
-            ['form' => $form->createView()]
-        );
+        return $this->render('contact/create.html.twig', ['form' => $form->createView()]);
     }
 
     /**
      * Edit action.
+     *
+     * Edits an existing contact entity.
      *
      * @param Request $request HTTP request
      * @param Contact $contact Contact entity
@@ -109,38 +106,30 @@ class ContactController extends AbstractController
     #[Route('/{id}/edit', name: 'contact_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
     public function edit(Request $request, Contact $contact): Response
     {
-        $form = $this->createForm(
-            ContactType::class,
-            $contact,
-            [
-                'method' => 'PUT',
-                'action' => $this->generateUrl('contact_edit', ['id' => $contact->getId()]),
-            ]
-        );
+        $form = $this->createForm(ContactType::class, $contact, [
+            'method' => 'PUT',
+            'action' => $this->generateUrl('contact_edit', ['id' => $contact->getId()]),
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->contactService->save($contact);
 
-            $this->addFlash(
-                'success',
-                $this->translator->trans('message.created_successfully')
-            );
+            $this->addFlash('success', $this->translator->trans('message.edited_successfully'));
 
             return $this->redirectToRoute('contact_index');
         }
 
-        return $this->render(
-            'contact/edit.html.twig',
-            [
-                'form' => $form->createView(),
-                'contact' => $contact,
-            ]
-        );
+        return $this->render('contact/edit.html.twig', [
+            'form' => $form->createView(),
+            'contact' => $contact,
+        ]);
     }
 
     /**
      * Delete action.
+     *
+     * Deletes a contact entity.
      *
      * @param Request $request HTTP request
      * @param Contact $contact Contact entity
@@ -150,33 +139,23 @@ class ContactController extends AbstractController
     #[Route('/{id}/delete', name: 'contact_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
     public function delete(Request $request, Contact $contact): Response
     {
-        $form = $this->createForm(
-            FormType::class,
-            $contact,
-            [
-                'method' => 'DELETE',
-                'action' => $this->generateUrl('contact_delete', ['id' => $contact->getId()]),
-            ]
-        );
+        $form = $this->createForm(FormType::class, $contact, [
+            'method' => 'DELETE',
+            'action' => $this->generateUrl('contact_delete', ['id' => $contact->getId()]),
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->contactService->delete($contact);
 
-            $this->addFlash(
-                'success',
-                $this->translator->trans('message.deleted_successfully')
-            );
+            $this->addFlash('success', $this->translator->trans('message.deleted_successfully'));
 
             return $this->redirectToRoute('contact_index');
         }
 
-        return $this->render(
-            'contact/delete.html.twig',
-            [
-                'form' => $form->createView(),
-                'contact' => $contact,
-            ]
-        );
+        return $this->render('contact/delete.html.twig', [
+            'form' => $form->createView(),
+            'contact' => $contact,
+        ]);
     }
 }

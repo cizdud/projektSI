@@ -79,7 +79,7 @@ class Contact
     /**
      * Getter for Id.
      *
-     * @return int|null Result
+     * @return int|null Id
      */
     public function getId(): ?int
     {
@@ -100,6 +100,8 @@ class Contact
      * Setter for Name.
      *
      * @param string|null $name Name
+     *
+     * @return $this
      */
     public function setName(?string $name): self
     {
@@ -122,6 +124,8 @@ class Contact
      * Setter for Surname.
      *
      * @param string|null $surname Surname
+     *
+     * @return $this
      */
     public function setSurname(?string $surname): self
     {
@@ -132,6 +136,8 @@ class Contact
 
     /**
      * Getter for Address.
+     *
+     * @return string|null Address
      */
     public function getAddress(): ?string
     {
@@ -142,6 +148,8 @@ class Contact
      * Setter for Address.
      *
      * @param string|null $address Address
+     *
+     * @return $this
      */
     public function setAddress(?string $address): self
     {
@@ -152,6 +160,8 @@ class Contact
 
     /**
      * Getter for Phone.
+     *
+     * @return string|null Phone
      */
     public function getPhone(): ?string
     {
@@ -162,6 +172,8 @@ class Contact
      * Setter for Phone.
      *
      * @param string|null $phone Phone
+     *
+     * @return $this
      */
     public function setPhone(?string $phone): self
     {
@@ -170,7 +182,12 @@ class Contact
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    /**
+     * Getter for created at date.
+     *
+     * @return \DateTimeImmutable|null Created at date
+     */
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
     }
@@ -179,17 +196,26 @@ class Contact
      * Set the created at date.
      *
      * @param \DateTimeImmutable|null $createdAt The created at date
+     *
+     * @return $this
      */
-    public function setCreatedAt(?\DateTimeImmutable $createdAt): void
+    public function setCreatedAt(?\DateTimeImmutable $createdAt): self
     {
         if (null === $createdAt) {
             $this->createdAt = new \DateTimeImmutable();
         } else {
             $this->createdAt = $createdAt;
         }
+
+        return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
+    /**
+     * Getter for updated at date.
+     *
+     * @return \DateTimeImmutable|null Updated at date
+     */
+    public function getUpdatedAt(): ?\DateTimeImmutable
     {
         return $this->updatedAt;
     }
@@ -198,13 +224,17 @@ class Contact
      * Set the updated at date.
      *
      * @param \DateTimeImmutable|null $updatedAt The updated at date
+     *
+     * @return $this
      */
-    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): void
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
     {
         if (null === $updatedAt) {
             $this->updatedAt = new \DateTimeImmutable();
         } else {
             $this->updatedAt = $updatedAt;
         }
+
+        return $this;
     }
 }

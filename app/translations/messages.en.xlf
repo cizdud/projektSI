@@ -190,9 +190,9 @@
         <target>Deleted successfully.</target>
       </trans-unit>
 
-      <trans-unit id="message.category_contains_tasks">
+      <trans-unit id="message.category_contains_events">
         <source>message.category_contains_tasks</source>
-        <target>This category contains tasks and cannot be deleted directly.</target>
+        <target>This category contains events and cannot be deleted directly.</target>
       </trans-unit>
 
       <trans-unit id="message.created_successfully">

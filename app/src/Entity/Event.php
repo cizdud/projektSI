@@ -8,6 +8,7 @@ namespace App\Entity;
 use App\Repository\EventRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Event.
@@ -28,8 +29,6 @@ class Event
 
     /**
      * Created at.
-     *
-     * @var DateTimeImmutable|null
      */
     #[ORM\Column(type: 'datetime_immutable')]
     #[Gedmo\Timestampable(on: 'create')]
@@ -37,8 +36,6 @@ class Event
 
     /**
      * Updated at.
-     *
-     * @var DateTimeImmutable|null
      */
     #[ORM\Column(type: 'datetime_immutable')]
     #[Gedmo\Timestampable(on: 'update')]
@@ -142,11 +139,23 @@ class Event
         $this->title = $title;
     }
 
+    /**
+     * Getter for category.
+     *
+     * @return Category|null Category
+     */
     public function getCategory(): ?Category
     {
         return $this->category;
     }
 
+    /**
+     * Setter for category.
+     *
+     * @param Category|null $category Category
+     *
+     * @return $this
+     */
     public function setCategory(?Category $category): static
     {
         $this->category = $category;
@@ -154,11 +163,23 @@ class Event
         return $this;
     }
 
+    /**
+     * Getter for author.
+     *
+     * @return User|null Author
+     */
     public function getAuthor(): ?User
     {
         return $this->author;
     }
 
+    /**
+     * Setter for author.
+     *
+     * @param User|null $author Author
+     *
+     * @return $this
+     */
     public function setAuthor(?User $author): static
     {
         $this->author = $author;
@@ -168,6 +189,8 @@ class Event
 
     /**
      * Getter for event date.
+     *
+     * @return \DateTimeInterface|null Event date
      */
     public function getEventDate(): ?\DateTimeInterface
     {
@@ -178,13 +201,17 @@ class Event
      * Set the event date.
      *
      * @param \DateTimeInterface|null $eventDate The event date
+     *
+     * @return $this
      */
-    public function setEventDate(?\DateTimeInterface $eventDate): void
+    public function setEventDate(?\DateTimeInterface $eventDate): static
     {
         if (null === $eventDate) {
             $this->eventDate = new \DateTime();
         } else {
             $this->eventDate = $eventDate;
         }
+
+        return $this;
     }
 }

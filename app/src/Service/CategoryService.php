@@ -29,17 +29,19 @@ class CategoryService implements CategoryServiceInterface
      *
      * @param CategoryRepository $categoryRepository Category repository
      * @param PaginatorInterface $paginator          Paginator
+     * @param EventRepository    $eventRepository    Event repository
      */
     public function __construct(private readonly CategoryRepository $categoryRepository, private readonly PaginatorInterface $paginator, private readonly EventRepository $eventRepository)
     {
     }
 
+
     /**
-     * Get paginated list.
+     * Get paginated list of categories.
      *
-     * @param int $page Page number
+     * @param int $page Page number for pagination
      *
-     * @return PaginationInterface<string, mixed> Paginated list
+     * @return PaginationInterface<string, mixed> Paginated list of categories
      */
     public function getPaginatedList(int $page): PaginationInterface
     {
@@ -51,26 +53,31 @@ class CategoryService implements CategoryServiceInterface
     }
 
     /**
-     * Save entity.
+     * Save category entity.
      *
-     * @param Category $category Category entity
+     * @param Category $category Category entity to save
      */
     public function save(Category $category): void
     {
         $this->categoryRepository->save($category);
     }
 
+    /**
+     * Delete category entity.
+     *
+     * @param Category $category Category entity to delete
+     */
     public function delete(Category $category): void
     {
         $this->categoryRepository->delete($category);
     }
 
     /**
-     * Can Category be deleted?
+     * Determine if a category can be deleted.
      *
      * @param Category $category Category entity
      *
-     * @return bool Result
+     * @return bool True if the category can be deleted, otherwise false
      */
     public function canBeDeleted(Category $category): bool
     {
@@ -84,11 +91,11 @@ class CategoryService implements CategoryServiceInterface
     }
 
     /**
-     * Find by id.
+     * Find category by its ID.
      *
-     * @param int $id Category id
+     * @param int $id Category ID
      *
-     * @return Category|null Category entity
+     * @return Category|null Category entity or null if not found
      *
      * @throws NonUniqueResultException
      */

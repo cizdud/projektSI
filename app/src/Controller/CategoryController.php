@@ -35,6 +35,8 @@ class CategoryController extends AbstractController
     /**
      * Index action.
      *
+     * @param int $page Page number for pagination
+     *
      * @return Response HTTP response
      */
     #[Route(name: 'category_index', methods: 'GET')]
@@ -48,7 +50,7 @@ class CategoryController extends AbstractController
     /**
      * Show action.
      *
-     * @param Category $category Category
+     * @param Category $category Category entity
      *
      * @return Response HTTP response
      */
