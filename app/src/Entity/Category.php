@@ -55,9 +55,8 @@ class Category
     /**
      * Slug.
      */
-    #[ORM\Column(type: 'string', length: 64)]
+    #[ORM\Column(type: 'string')]
     #[Assert\Type('string')]
-    #[Assert\Length(min: 3, max: 64)]
     #[Gedmo\Slug(fields: ['title'])]
     private ?string $slug;
 
