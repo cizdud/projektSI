@@ -215,6 +215,71 @@
         <source>label.password</source>
         <target>Hasło</target>
       </trans-unit>
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" target-language="pl" datatype="plaintext" original="file.ext">
+    <body>
+      <!-- Brakujące tłumaczenia -->
+      <trans-unit id="message.category_contains_tasks">
+        <source>message.category_contains_tasks</source>
+        <target>Ta kategoria zawiera wydarzenia i nie może zostać bezpośrednio usunięta.</target>
+      </trans-unit>
+
+      <trans-unit id="title.contact_list">
+        <source>title.contact_list</source>
+        <target>Lista kontaktów</target>
+      </trans-unit>
+
+      <trans-unit id="message_empty_list">
+        <source>message_empty_list</source>
+        <target>Lista jest pusta.</target>
+      </trans-unit>
+
+      <trans-unit id="title.welcome">
+        <source>title.welcome</source>
+        <target>Witamy!</target>
+      </trans-unit>
+
+      <trans-unit id="title.event_list">
+        <source>title.event_list</source>
+        <target>Lista wydarzeń</target>
+      </trans-unit>
+
+      <trans-unit id="title.category_list">
+        <source>title.category_list</source>
+        <target>Lista kategorii</target>
+      </trans-unit>
+
+      <trans-unit id="action.logout">
+        <source>action.logout</source>
+        <target>Wyloguj</target>
+      </trans-unit>
+
+      <trans-unit id="title.login">
+        <source>title.login</source>
+        <target>Zaloguj się</target>
+      </trans-unit>
+
+      <trans-unit id="login.logged_in_as">
+        <source>login.logged_in_as</source>
+        <target>Zalogowany jako %username%</target>
+      </trans-unit>
+
+      <trans-unit id="login.remember_me">
+        <source>login.remember_me</source>
+        <target>Zapamiętaj mnie</target>
+      </trans-unit>
+
+      <trans-unit id="action.login">
+        <source>action.login</source>
+        <target>Zaloguj się</target>
+      </trans-unit>
+
+      <trans-unit id="message.form_error">
+        <source>message.form_error</source>
+        <target>Błąd formularza</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
+

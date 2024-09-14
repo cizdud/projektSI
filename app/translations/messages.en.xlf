@@ -271,7 +271,65 @@
         <source>action.login</source>
         <target>Log in</target>
       </trans-unit>
+            <trans-unit id="message.category_contains_tasks">
+              <source>message.category_contains_tasks</source>
+              <target>This category contains events and cannot be deleted directly.</target>
+            </trans-unit>
 
+            <trans-unit id="title.contact_list">
+              <source>title.contact_list</source>
+              <target>Contact List</target>
+            </trans-unit>
+
+            <trans-unit id="message_empty_list">
+              <source>message_empty_list</source>
+              <target>List is empty.</target>
+            </trans-unit>
+
+            <trans-unit id="title.welcome">
+              <source>title.welcome</source>
+              <target>Welcome!</target>
+            </trans-unit>
+
+            <trans-unit id="title.event_list">
+              <source>title.event_list</source>
+              <target>Event List</target>
+            </trans-unit>
+
+            <trans-unit id="title.category_list">
+              <source>title.category_list</source>
+              <target>Category List</target>
+            </trans-unit>
+
+            <trans-unit id="action.logout">
+              <source>action.logout</source>
+              <target>Logout</target>
+            </trans-unit>
+
+            <trans-unit id="title.login">
+              <source>title.login</source>
+              <target>Log in</target>
+            </trans-unit>
+
+            <trans-unit id="login.logged_in_as">
+              <source>login.logged_in_as</source>
+              <target>You are logged in as %username%</target>
+            </trans-unit>
+
+            <trans-unit id="login.remember_me">
+              <source>login.remember_me</source>
+              <target>Remember me</target>
+            </trans-unit>
+
+            <trans-unit id="action.login">
+              <source>action.login</source>
+              <target>Log in</target>
+            </trans-unit>
+
+            <trans-unit id="message.form_error">
+              <source>message.form_error</source>
+              <target>Form error</target>
+            </trans-unit>
     </body>
   </file>
 </xliff>
