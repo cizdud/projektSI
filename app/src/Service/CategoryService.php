@@ -35,7 +35,6 @@ class CategoryService implements CategoryServiceInterface
     {
     }
 
-
     /**
      * Get paginated list of categories.
      *
