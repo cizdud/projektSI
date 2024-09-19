@@ -36,7 +36,6 @@ class EventController extends AbstractController
     {
     }
 
-
     /**
      * Index action.
      *
