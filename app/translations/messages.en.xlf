@@ -213,6 +213,11 @@
         <target>Edited successfully.</target>
       </trans-unit>
 
+      <trans-unit id="message_empty_list">
+        <source>message_empty_list</source>
+        <target>List is empty.</target>
+      </trans-unit>
+
       <trans-unit id="label.event_title">
         <source>label.event_title</source>
         <target>Event Title</target>
@@ -231,6 +236,11 @@
       <trans-unit id="title.main_index">
         <source>title.main_index</source>
         <target>Home</target>
+      </trans-unit>
+
+      <trans-unit id="title.login">
+        <source>title.login</source>
+        <target>Log in</target>
       </trans-unit>
 
       <trans-unit id="login.please_sign_in">
